@@ -86,7 +86,6 @@ const typeDefs = gql`
         count: Int!
     }
 
-
     type Query{
         # Event
         events: [Event!]!
@@ -106,21 +105,25 @@ const typeDefs = gql`
     }
 
     type Mutation{
+
         # User
         createUser(data: CreateUserInput!): User!
         updateUser(id: ID!, data: UpdateUserInput!): User!
         deleteUser(id: ID!): User!
         deleteAllUsers: DeleteAllOutput!
+
         # Event
         createEvent(data: CreateEventInput!): Event!
         updateEvent(id: ID!, data: UpdateEventInput!): Event!
         deleteEvent(id: ID!): Event!
         deleteAllEvents: DeleteAllOutput!
+
         # Location
         createLocation(data: CreateLocationInput!): Location!
         updateLocation(id: ID!, data: UpdateLocationInput!): Location!
         deleteLocation(id: ID!): Location!
         deleteAllLocations: DeleteAllOutput!
+        
         # Participant
         createParticipant(data: CreateParticipantInput!): Participant!
         updateParticipant(id: ID!, data: UpdateParticipantInput!): Participant!
@@ -211,7 +214,9 @@ const resolvers = {
     },
 };
 
+const { PubSub } = require('graphql-subscriptions');
 const pubsub = new PubSub();
+
 const server = new ApolloServer({
     typeDefs,
     resolvers,
